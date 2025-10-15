@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sakthi Dental Clinic - Specialized Dental Care for Women, Children & Families</title>
+    <meta name="description" content="Sakthi Dental Clinic in Hosur provides specialized dental care for women, children & families. Expert dentists, modern equipment & compassionate care.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Base Styles */
@@ -35,6 +36,7 @@
             line-height: 1.6;
             color: var(--dark);
             background-color: var(--white);
+            overflow-x: hidden;
         }
 
         .container {
@@ -115,6 +117,7 @@
             width: 100%;
             top: 0;
             z-index: 1000;
+            transition: var(--transition);
         }
 
         .navbar {
@@ -154,16 +157,33 @@
             color: var(--dark);
             font-weight: 500;
             transition: var(--transition);
+            position: relative;
         }
 
         .nav-links a:hover {
             color: var(--primary);
         }
 
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
         .mobile-menu {
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
+            color: var(--primary);
         }
 
         /* Hero Section */
@@ -171,20 +191,25 @@
             background: linear-gradient(rgba(106, 90, 205, 0.9), rgba(106, 90, 205, 0.8)), url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             color: var(--white);
             padding: 180px 0 100px;
             text-align: center;
+            position: relative;
         }
 
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
             font-size: 3rem;
             margin-bottom: 20px;
             line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .hero p {
@@ -205,12 +230,27 @@
             background-color: var(--light);
             padding: 40px 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .assurance-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-light) 0%, var(--secondary) 100%);
+            opacity: 0.1;
         }
 
         .assurance-banner p {
             font-size: 1.5rem;
             font-weight: 600;
             color: var(--primary);
+            position: relative;
+            z-index: 1;
         }
 
         /* Why Choose Us */
@@ -227,16 +267,35 @@
             box-shadow: var(--shadow);
             text-align: center;
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
         }
 
         .feature-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
         .feature-icon {
             font-size: 2.5rem;
             color: var(--primary);
             margin-bottom: 20px;
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            background-color: var(--light);
         }
 
         .feature-card h3 {
@@ -266,11 +325,12 @@
 
         .treatment-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
         .treatment-img {
             height: 200px;
-            background-color: var(--primary-light);
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -307,6 +367,18 @@
             box-shadow: var(--shadow);
             text-align: center;
             display: none;
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--light);
+            font-family: Georgia, serif;
+            line-height: 1;
         }
 
         .testimonial.active {
@@ -315,14 +387,16 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .testimonial-text {
             font-style: italic;
             margin-bottom: 20px;
             font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
         }
 
         .testimonial-author {
@@ -344,10 +418,16 @@
             color: var(--primary);
             cursor: pointer;
             transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .testimonial-controls button:hover {
-            color: var(--primary-light);
+            background-color: var(--light);
         }
 
         /* Amenities */
@@ -368,12 +448,121 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .amenity-item:hover {
+            transform: translateY(-5px);
         }
 
         .amenity-icon {
             font-size: 2rem;
             color: var(--primary);
             margin-right: 20px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--light);
+            border-radius: 50%;
+        }
+
+        /* Contact Form */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-form {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-form h3 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact-info {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .info-icon {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-right: 15px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--light);
+            border-radius: 50%;
+        }
+
+        .map-container {
+            margin-top: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .map-placeholder {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.1rem;
         }
 
         /* Footer */
@@ -427,13 +616,13 @@
             padding-left: 5px;
         }
 
-        .contact-info {
+        .contact-info-footer {
             display: flex;
             align-items: flex-start;
             margin-bottom: 15px;
         }
 
-        .contact-info i {
+        .contact-info-footer i {
             margin-right: 10px;
             color: var(--secondary);
         }
@@ -469,6 +658,72 @@
             font-size: 0.9rem;
         }
 
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-5px);
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--light);
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero h1 {
@@ -477,6 +732,10 @@
             
             .section-title h2 {
                 font-size: 1.8rem;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -491,6 +750,7 @@
                 flex-direction: column;
                 padding: 20px;
                 box-shadow: var(--shadow);
+                text-align: center;
             }
 
             .nav-links.active {
@@ -507,6 +767,7 @@
 
             .hero {
                 padding: 150px 0 80px;
+                background-attachment: scroll;
             }
 
             .hero h1 {
@@ -527,6 +788,10 @@
             section {
                 padding: 60px 0;
             }
+            
+            .feature-card, .treatment-card, .amenity-item {
+                padding: 20px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -538,13 +803,22 @@
                 font-size: 1.6rem;
             }
             
-            .feature-card, .treatment-card, .amenity-item {
+            .assurance-banner p {
+                font-size: 1.2rem;
+            }
+            
+            .testimonial {
                 padding: 20px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading">
+        <div class="spinner"></div>
+    </div>
+
     <!-- Header & Navigation -->
     <header>
         <div class="container">
@@ -557,7 +831,7 @@
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#treatments">Treatments</a></li>
-                    <li><a href="#faqs">FAQs</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 <div class="mobile-menu">
@@ -698,7 +972,7 @@
     </section>
 
     <!-- Testimonials -->
-    <section>
+    <section id="testimonials">
         <div class="container">
             <div class="section-title">
                 <h2>What Our Patients Say</h2>
@@ -767,25 +1041,91 @@
         </div>
     </section>
 
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Get in touch with us for appointments or inquiries</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h3>We would love to hear from you</h3>
+                    <form id="appointmentForm">
+                        <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message (Optional)</label>
+                            <textarea id="message" class="form-control"></textarea>
+                        </div>
+                        <button type="submit" class="btn">Submit</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h3>Reach us</h3>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <p>B2/8, SBM Layout, Anthivadi, Hosur, Tamil Nadu 635109, India</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <p>info@sakthidentalclinic.in</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <p>+91 9862890897 / +91 9363298118</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <p>Sunday to Saturday: 9am to 8pm</p>
+                    </div>
+                    <div class="map-container">
+                        <div class="map-placeholder">
+                            <p>Clinic Location Map</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer id="contact">
+    <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>Contact Info</h3>
-                    <div class="contact-info">
+                    <div class="contact-info-footer">
                         <i class="fas fa-map-marker-alt"></i>
                         <p>B2/8, SBM Layout, Anthivadi, Hosur, Tamil Nadu 635109, India</p>
                     </div>
-                    <div class="contact-info">
+                    <div class="contact-info-footer">
                         <i class="fas fa-envelope"></i>
                         <p>info@sakthidentalclinic.in</p>
                     </div>
-                    <div class="contact-info">
+                    <div class="contact-info-footer">
                         <i class="fas fa-phone"></i>
                         <p>+91 9862890897 / +91 9363298118</p>
                     </div>
-                    <div class="contact-info">
+                    <div class="contact-info-footer">
                         <i class="fas fa-clock"></i>
                         <p>Sunday to Saturday: 9am to 8pm</p>
                     </div>
@@ -796,7 +1136,7 @@
                         <li><a href="#home">Home</a></li>
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#treatments">Treatments</a></li>
-                        <li><a href="#faqs">FAQs</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
                         <li><a href="#contact">Contact</a></li>
                         <li><a href="#privacy">Privacy Policy</a></li>
                     </ul>
@@ -829,13 +1169,37 @@
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
     <script>
+        // Loading Screen
+        window.addEventListener('load', function() {
+            const loading = document.querySelector('.loading');
+            setTimeout(() => {
+                loading.classList.add('hidden');
+            }, 1000);
+        });
+
         // Mobile Menu Toggle
         const mobileMenu = document.querySelector('.mobile-menu');
         const navLinks = document.querySelector('.nav-links');
 
         mobileMenu.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+            mobileMenu.querySelector('i').classList.toggle('fa-bars');
+            mobileMenu.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenu.querySelector('i').classList.add('fa-bars');
+                mobileMenu.querySelector('i').classList.remove('fa-times');
+            });
         });
 
         // Testimonial Slider
@@ -894,8 +1258,82 @@
                     
                     // Close mobile menu if open
                     navLinks.classList.remove('active');
+                    mobileMenu.querySelector('i').classList.add('fa-bars');
+                    mobileMenu.querySelector('i').classList.remove('fa-times');
                 }
             });
+        });
+
+        // Back to Top Button
+        const backToTopButton = document.querySelector('.back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('active');
+            } else {
+                backToTopButton.classList.remove('active');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Form Validation
+        const appointmentForm = document.getElementById('appointmentForm');
+        
+        appointmentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            
+            // Simple validation
+            if (name.trim() === '') {
+                alert('Please enter your name');
+                return;
+            }
+            
+            if (email.trim() === '' || !isValidEmail(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            if (phone.trim() === '' || !isValidPhone(phone)) {
+                alert('Please enter a valid phone number');
+                return;
+            }
+            
+            // In a real application, you would send this data to a server
+            alert('Thank you for your appointment request! We will contact you soon.');
+            appointmentForm.reset();
+        });
+        
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+        
+        function isValidPhone(phone) {
+            // Simple phone validation - at least 10 digits
+            const phoneRegex = /^\d{10,}$/;
+            return phoneRegex.test(phone.replace(/\D/g, ''));
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.padding = '10px 0';
+                header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.padding = '0';
+                header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.08)';
+            }
         });
     </script>
 </body>
